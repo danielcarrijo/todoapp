@@ -1,0 +1,26 @@
+
+#app {
+  background-image: url(../img/back.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.scroll-y-card {
+    height: 300px;
+}
+
+.bg-myblue {
+  background: rgb(187,225,247);
+}
+
+input.error {
+    border: 1px solid red;
+  }
+  
+  .errorMessage {
+    color: red;
+    font-size: 0.75em;
+    display: relative;
+  }
+  
