@@ -1,6 +1,7 @@
 # todoapp
 
 A simple TO-DO APP (still developing)
+
 Basic Functions are ready (Create TASK, List TASKS, Show Tasks, Mark as Completed)
 
 ## Getting Started
