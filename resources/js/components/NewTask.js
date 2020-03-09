@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React,{ Component } from 'react'
-import { Link } from 'react-router-dom'
+
 
 const formValid = ({formErrors, ...rest}) => {
   
@@ -103,7 +103,7 @@ class NewTask extends Component {
                                     <h4> Cadastrar uma nova tarefa </h4>
                                 </div>
                             </div>
-                            <div className="card-body">
+                            <div className="card-body bg-light">
                                 <form autoComplete="off" onSubmit={this.handleSubmit}>
                                     <div className="form-row">
                                         <div className="form-group col-12">
@@ -113,7 +113,7 @@ class NewTask extends Component {
                                                 type = "text"
                                                 value = {this.state.nome}
                                                 name = "nome"
-                                                className = "form-control"
+                                                className = {`form-control ${formErrors.nome ? 'error' : ''}`}
                                                 onChange = {this.handleChangeField}
                                             />
                                             {(formErrors.nome.length > 0) && (
@@ -130,7 +130,7 @@ class NewTask extends Component {
                                                 value = {this.state.description}
                                                 rows = '10'
                                                 name = "description"
-                                                className = "form-control"
+                                                className = {`form-control ${formErrors.description ? 'error' : ''}`}
                                                 onChange = {this.handleChangeField}
                                             />
                                             {(formErrors.description.length > 0) && (

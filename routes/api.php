@@ -19,6 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/task','TaskController@index');
+Route::get('/task/completed','TaskController@completed');
 Route::post('/task','TaskController@store');
 Route::get('/task/{id}','TaskController@show');
 Route::put('task/{task}','TaskController@markAsCompleted');
+Route::put('task/completed/{task}','TaskController@recover');
+
+Route::post('/subitem','SubItemController@store');
+Route::put('/subitem/{subitem}','SubItemController@markAsCompleted');

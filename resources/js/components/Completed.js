@@ -6,19 +6,28 @@ const DefineUrgence = number  => {
     return number == 2 ? ' Urgente' : number==1 ? ' Mediano' : 'Tranquilo';
 }
 
-class TasksList extends Component {
+class Completed extends Component {
     constructor() {
         super();
         this.state = {
             tasks : []
         }
+        this.handleClick = this.handleClick.bind(this)
     }
     componentDidMount () {
-        axios.get('/api/task').then(response => {
+        axios.get('/api/task/completed').then(response => {
           this.setState({
             tasks: response.data
           })
         })
+      }
+
+      handleClick(e) {
+           e.preventDefault()
+           const { history } = this.props
+           const { id } = e.target;
+           axios.put(`/api/task/completed/${id}`).then(response => {history.push('/')})
+
       }
     render() {
         const { tasks } = this.state
@@ -28,37 +37,25 @@ class TasksList extends Component {
                     <div className="col-md-8">
                         <div className="card">
                             <div className="card-header bg-myblue">
-                                <div className="card-title"><h4>Tarefas</h4></div>
+                                <div className="card-title"><h4>Tarefas já completadas</h4><h6>Clique na tarefa que quer recuperar</h6></div>
                             </div>
                             <div className="card-body">
-                            <div className="row mb-3 mx-2">
-                            <Link className='btn btn-primary btn-sm' to='/create'>
-                                Criar nova tarefa
-                            </Link>
-                            <Link className="btn btn-primary btn-sm ml-auto" to="/recuperar"> 
-                                Recuperar alguma tarefa?
-                            </Link>
-                            </div>
-                            
-                            <ul className='list-group list-group-flush mb-3'>
+                            <ul className='list-group list-group-flush'>
                                 {tasks.map(task => (
-                                    <Link 
+                                    <a 
                                         className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                                        to={`/${task.id}`}
-                                        key={task.id}
+                                        id = {task.id}
+                                        onClick = {this.handleClick}
                                     >
                                         {task.nome}
                                         <span className={`ml-auto badge ${task.urgence  == '2' ? 'badge-danger' : `${task.urgence  == '1' ? 'badge-warning' :'badge-success'}`} `}>
                                             {DefineUrgence(task.urgence)}
                                         </span>
-                                    </Link> 
+                                    </a> 
                                 ))}
                             
                             </ul>
-                            
                             </div>
-                            
-                            
                         </div>
                     </div>
                 </div>
@@ -66,4 +63,4 @@ class TasksList extends Component {
         ) 
     }
 }
-export default TasksList
+export default Completed

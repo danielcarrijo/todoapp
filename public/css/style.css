@@ -23,4 +23,8 @@ input.error {
     font-size: 0.75em;
     display: relative;
   }
+
+.yellower {
+  color: yellow;
+}
   

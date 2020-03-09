@@ -17,6 +17,12 @@ class TaskController extends Controller
         return $tasks->toJson();
     }
 
+    public function completed()
+    {
+        $tasks = Task::where('is_completed', 1)->orderBy('urgence', 'desc')->orderBy('created_at', 'desc')->get();
+        return $tasks->toJson();
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,7 +49,9 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::find($id);
+        $task = Task::with(['subitems' => function($query){
+            $query->where('is_completed','0')->orderBy('urgence', 'desc')->orderBy('created_at', 'desc');
+        }])->find($id);
         return $task->toJson();
     }
 
@@ -55,6 +63,13 @@ class TaskController extends Controller
         return response()->json('Project updated!');
       }
     
+      public function Recover(Task $task)
+      {
+        $task->is_completed = false;
+        $task->update();
+
+        return response()->json('Project updated!');
+      }
 
     /**
      * Show the form for editing the specified resource.
