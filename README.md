@@ -1,8 +1,7 @@
 # todoapp
 
-A simple TO-DO APP (still developing)
+A simple TO-DO APP to manage tasks (where you can add a title, description and relevance) as well as their subitems. 
 
-Basic Functions are ready (Create TASK, List TASKS, Show Tasks, Mark as Completed)
 
 ## Getting Started
 
