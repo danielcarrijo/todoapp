@@ -42,10 +42,7 @@ Be sure to fill in your database details in your `.env` file before running the 
 ```bash
 php artisan migrate
 ```
-Run 
-```bash
-npm install && npm start
-```
+
 
 And finally, start the application:
 
